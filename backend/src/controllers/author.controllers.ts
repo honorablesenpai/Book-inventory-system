@@ -10,7 +10,7 @@ export class AuthorController {
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
-    async create(@Body() createAuthorDto: createAuthorDto): Promise<Author> {
+    async create(@Body() createAuthorDto: CreateAuthorDto): Promise<Author> {
         return await this.authorService.create(createAuthorDto);
     }
 
@@ -25,7 +25,7 @@ export class AuthorController {
     } 
 
     @Put(':id')
-    async update(@Param('id') id: string' @Body() updateAuthorDto: UpdateAuthorDto, ): Promise<Author> {
+    async update(@Param('id') id: string  @Body() updateAuthorDto: UpdateAuthorDto, ): Promise<Author> {
         return await this.authorService.update(id, updateAuthorDto);
     }
 
