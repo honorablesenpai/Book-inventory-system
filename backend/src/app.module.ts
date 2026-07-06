@@ -1,28 +1,27 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
+import { AuthorModule } from './modules/author.modules';
+import { BookModule } from './modules/book.module';
+import { PublisherModule } from './modules/publisher.module';
+import { SchoolModule } from './modules/school.module';
+import { InventoryRecordModule } from './modules/inventory-record.module';
 
 @Module({
-  imports: [
+  imports: [ 
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env',
     }),
+    
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      url: process.env.DATABASE_URL,
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: process.env.NODE_ENV !== 'production',
-      logging: process.env.NODE_ENV === 'development',
-      ssl: true,
-      extra: {
-        rejectUnauthorized: false,
-      },
-    }),
-  ],
-  controllers: [AppController],
-  providers: [AppService],
-})
-export class AppModule {}
+    type: 'postgres',
+    url: postgresql://postgress:[#Crazy 460000]@db.eupxbgwpbrnjipnwsuuv.supabase.co:5432/postgres,
+    autoLoadEntities: true,
+    synchronize: true,
+    ssl: { rejectUnauthorized: false },
+
+  }),
+    AuthorModule, BookModule, PublisherModule, SchoolModule, InventoryRecordModule,
+],
+}) export class AppModule {}

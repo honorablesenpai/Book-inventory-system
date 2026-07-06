@@ -1,53 +1,53 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, Index } from 'typeorm';
 import { Book } from './book.entity';
-import { School } from './book.entity';
+import { School } from './school.entity';
 
 @Entity('inventory_records')
 @Index(['bookId', 'schoolId'], { unique: true})
 export class InventoryRecord {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id!: string;
 
     @Column({ type: 'uuid' })
-    bookId: string;
+    bookId!: string;
 
     @Column({ type: 'uuid' })
-    schoolId: string;
+    schoolId!: string;
 
     @Column({ type: 'int', default: 0})
-    quantityAvailable: number;
+    quantityAvailable!: number;
 
     @Column({ type: 'int', default: 0})
-    quantityBorrowed: number;
+    quantityBorrowed!: number;
 
     @Column({ type: 'int', default: 0})
-    quantityDamaged: number;
+    quantityDamaged!: number;
 
     @Column({ type: 'int', default: 0})
-    quantityLost: number;
+    quantityLost!: number;
 
     @Column({ type: 'varchar', length: 50, nullable: true})
-    location: string;
+    location!: string;
 
     @Column({ type: 'varchar', length: 50, default: 'Availabel'})
-    status: string;
+    status!: string;
 
      @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
-    createdAt: Date;
+    createdAt!: Date;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP'})
-    updatedAt: Date;
+    updatedAt!: Date;
 
     @Column({ type: 'timestamp', nullable: true })
-    lastCheckDate: Date;
+    lastCheckDate!: Date;
 
-    @ManyToOne(() => Book, (book) => book.inventoryRecords, { eager: true })
+    @ManyToOne(() => Book, (book) => book.inventoryRecord, { eager: true })
     @JoinColumn({ name: 'bookId' })
-    book: Book;
+    book!: Book;
 
-    @ManyToOne(() => School, (school) => school.inventory_records, { eager: true })
+    @ManyToOne(() => School, (school) => school.inventoryRecord, { eager: true })
     @JoinColumn({ name: 'schoolId '})
-    school: School;
+    school!: School;
 
     get totalQuantity(): number {
         return this.quantityAvailable + this.quantityBorrowed + this.quantityDamaged + this.quantityLost

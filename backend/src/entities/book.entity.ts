@@ -6,46 +6,39 @@ import { InventoryRecord } from './inventory-record.entity';
 @Entity('books')
 export class Book {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id!: string;
 
     @Column({ type: 'varchar', length: 255})
-    title: string;
+    title!: string;
 
     @Column({ type: 'text', nullable: true})
-    description: string;
+    description!: string;
 
-     @Column({ type: 'varchar', length: 20, unique: 20})
-    isbn: string;
+     @Column({ type: 'varchar', length: 20, unique: true})
+    isbn!: string;
 
      @Column({ type: 'varchar', length: 20, nullable: true})
-    issn: string;
+    issn!: string;
 
      @Column({ type: 'int'})
-    publicationYear: number;
+    publicationYear!: number;
 
     @Column({ type: 'int', nullable: true})
-    pageCount: number;
+    pageCount!: number;
 
      @Column({ type: 'varchar', length: 50, nullable: true})
-    language: string;
+    language!: string;
 
      @Column({ type: 'varchar', length: 100, nullable: true})
-    category: string;
+    category!: string;
 
     @Column({ type: 'uuid' })
-    authorId: string;
+    authorId!: string;
 
     @Column({ type: 'uuid' })
-    publisherId: string;
+    publisherId!: string;
 
-    
-    
-    
-
-
-
-
-
-
+    @OneToMany (() => InventoryRecord, (inventoryRecord) => inventoryRecord.book)
+    inventoryRecord!: InventoryRecord[];
 
 }

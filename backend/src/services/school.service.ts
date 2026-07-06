@@ -6,7 +6,7 @@ import { CreateSchoolDto } from '../dtos/create-school.dto';
 import { UpdateschoolDto } from '../dtos/update-school.dto';
 
 @Injectable()
-export class SchholService {
+export class SchoolService {
     constructor( @InjectRepository(School) private schoolRepository: Repository<School>, ) {}
 
     async create(createSchoolDto: CreateSchoolDto): Promise<School> {

@@ -1,37 +1,37 @@
-import { Entity, PrimaryGeneratedColumn, Column, oneTomany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Book } from './book.entity';
 
 @Entity('publishers')
 export class Publisher {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id!: string;
 
     @Column({ type: 'varchar', length: 255, unique: true})
-    name: string;
+    name!: string;
 
      @Column({ type: 'varchar', length: 255, nullable: true})
-    city: string;
+    city!: string;
 
      @Column({ type: 'varchar', length: 255, nullable: true})
-    country: string;
+    country!: string;
 
      @Column({ type: 'varchar', length: 20, nullable: true})
-    phone: string;
+    phone!: string;
 
      @Column({ type: 'varchar', length: 255, nullable: true})
-    email: string;
+    email!: string;
 
      @Column({ type: 'text', nullable: true})
-    website: string;
+    website!: string;
 
      @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
-    createdAt: Date;
+    createdAt!: Date;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP'})
-    updatedAt: Date;
+    updatedAt!: Date;
 
-      @OneTomany(() => Book, (book) => book.publisher)
-    books: Book[];
+     @OneToMany(() => Book, (book) => book.publisherId)
+    books!: Book[];
 
 
 }

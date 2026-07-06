@@ -11,17 +11,19 @@ export class BookService {
 
     async create(createBookDto: CreateBookDto): Promise<Book> {
         const book = this.bookRepository.create(createBookDto);
-        retur await this.bookRepository.save(book);
+        return await this.bookRepository.save(book);
     }
 
     async findAll(): Promise<Book[]> {
-        return await this.bookRepository.find({ relations: ['author', "publisher"], });
+        return await this.bookRepository.find({
+             relations: ['author', "publisher"], 
+            });
     }
 
     async findOne(id: string): Promise<Book> {
         const book = await this.bookRepository.findOne({ where: { id }, relations: ['author', 'publisher'], });
         if (!book) {
-            throw new NotFoundException('Book with ID ${id}  nnot found');
+            throw new NotFoundException('Book with ID ${id}  not found');
         }
         return book;
     }

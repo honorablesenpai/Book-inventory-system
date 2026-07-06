@@ -1,55 +1,45 @@
-import { Entity,PrimaryGeneratedColumn, Column, OneTomany } from 'typeorm';
+import { Entity,PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn, UpdateDateColumn, CreateDateColumn } from 'typeorm';
 import { Book } from './book.entity';
 import { Publisher } from './publisher.entity';
+import { InventoryRecord } from './inventory-record.entity';
 
 @Entity('authors')
 export class Author {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id!: string;
 
     @Column({ type: 'varchar', length: 255, unique: true })
-    name: string;
+    name!: string;
 
     @Column({ type: 'text', nullable: true})
-    biogragphy: string;
+    biogragphy!: string;
 
     @Column({type: 'varchar', length: 255, nullable: true})
-    District: string;
+    District!: string;
 
      @Column({type: 'varchar', length: 255, nullable: true})
-    Country: string;
+    Country!: string;
 
      @Column({type: 'date', nullable: true})
-    DateOfBirth: Date;
+    DateOfBirth!: Date;
 
-    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
-    createdAt: Date;
+    @OneToMany(() => Book, (book) => book.authorId)
+    books!: Book[];
 
-    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP'})
-    updatedAt: Date;
+    @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
+    createdAt!: Date;
 
-    @OneTomany(() => Book, (book) => book.author)
-    books: Book[];
-
-    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
-    createdAt: Date;
-
-    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP'})
-    updatedAt: Date;
+    @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP'})
+    updatedAt!: Date;
 
     @ManyToOne (() => Author, (author) => author.books, { eager: true})
-    author: Author;
+    author!: Author;
 
     @ManyToOne(() => Publisher, (publisher) => publisher.books, { eager: true})
     @JoinColumn({ name: 'publisherId' })
-    publisher: Publisher;
+    publisher!: Publisher;
 
-    @OneTomany(() => InventoryRecord, (record) => record.book)
-    inventoryRecords: InventoryRecord[];
-
-
-
-
-
+    @OneToMany(() => InventoryRecord, (record) => record.book)
+    inventoryRecords!: InventoryRecord[];
 
 }
