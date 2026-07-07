@@ -2,10 +2,10 @@ import { IsUUID, IsNumber, IsOptional, IsString, MaxLength } from 'class-validat
 
 export class CreateInventoryRecordDto {
     @IsUUID()
-    bookId: string;
+    bookId!: string;
 
     @IsUUID()
-    schoolId: string;
+    schoolId!: string;
 
     @IsOptional()
     @IsNumber()

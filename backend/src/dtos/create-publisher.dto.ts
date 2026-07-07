@@ -1,9 +1,9 @@
-import { IsString, IsOptional, IsDataString, MaxLength } from 'class-validator';
+import { IsString, IsOptional, IsDateString, MaxLength } from 'class-validator';
 
 export class CreatePublisherDto {
     @IsString()
     @MaxLength(255)
-    name: string;
+    name!: string;
 
     @IsOptional()
     @IsString()

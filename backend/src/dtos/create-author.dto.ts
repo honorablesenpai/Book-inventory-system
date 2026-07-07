@@ -1,21 +1,21 @@
-import { IsString, IsOptional, IsDataString, MaxLenghth } from 'class-validator';
+import { IsString, IsOptional, IsDateString, MaxLength } from 'class-validator';
 
 export class CreateAuthorDto {
     @IsString()
-    @MaxLenghth(255)
+    @MaxLength(255)
     name?: string;
 
     @IsOptional()
     @IsString()
-    biograpghy?: string;
+    biography?: string;
 
     @IsOptional()
     @IsString()
-    @MaxLenghth(255)
+    @MaxLength(255)
     country?: string;
 
     @IsOptional()
-    @IsDataString()
+    @IsDateString()
     dateOfBirth?: Date;
 
 }

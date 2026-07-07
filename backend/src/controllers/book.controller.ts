@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Param, Put, Delete, HttpCode, HttpStatus, 
 import { BookService } from '../services/book.service';
 import { CreateBookDto } from '../dtos/create-book.dto';
 import { UpdateBookDto } from '../dtos/update-book.dto';
-import { Book } form '../entities/book.entity';
+import { Book } from '../entities/book.entity';
 
 @Controller('books')
 export class BookController {
@@ -10,7 +10,7 @@ export class BookController {
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
-    async create(@Body() createBookDto: createBookDto): Promise<Book> {
+    async create(@Body() createBookDto: CreateBookDto): Promise<Book> {
         return await this.bookService.create(createBookDto);
     }
 
@@ -25,7 +25,7 @@ export class BookController {
     } 
 
     @Put(':id')
-    async update( @Param('id') id: string' @Body() updateBookDto: UpdateBookDto, ): Promise<Book> {
+    async update( @Param('id') id: string, @Body() updateBookDto: UpdateBookDto, ): Promise<Book> {
         return await this.bookService.update(id, updateBookDto);
     }
 

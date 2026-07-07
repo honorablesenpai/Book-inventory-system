@@ -9,7 +9,7 @@ import { UpdateBookDto } from '../dtos/update-book.dto';
 export class BookService {
     constructor( @InjectRepository(Book) private bookRepository: Repository<Book>, ) {}
 
-    async create(createBookDto: CreateBookDto): Promise<Book> {
+    async create(createBookDto: CreateBookDto): Promise<Book[]> {
         const book = this.bookRepository.create(createBookDto);
         return await this.bookRepository.save(book);
     }

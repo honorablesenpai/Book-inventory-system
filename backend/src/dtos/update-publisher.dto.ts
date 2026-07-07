@@ -1,4 +1,4 @@
-import { IsString, IsOptional, IsDataString, MaxLength } from 'class-validator';
+import { IsString, IsOptional, IsDateString, MaxLength } from 'class-validator';
 
 export class UpdatePublisherDto {
     @IsOptional()

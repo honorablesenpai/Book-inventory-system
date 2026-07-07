@@ -1,4 +1,4 @@
-import { IsString, IsOptional, IsDataString, MaxLength } from 'class-validator';
+import { IsString, IsOptional, IsDateString, MaxLength } from 'class-validator';
 
 export class UpdateAuthorDto {
     @IsOptional()
@@ -16,7 +16,7 @@ export class UpdateAuthorDto {
     country?: string;
 
      @IsOptional()
-    @IsDataString()
+    @IsDateString()
     dateOfBirth?: Date;
 
 }

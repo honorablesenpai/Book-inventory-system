@@ -3,14 +3,14 @@ import { IsString, IsOptional, IsNumber, IsUUID, MaxLength, IsISBN } from 'class
 export class CreateBookDto {
     @IsString()
     @MaxLength(255)
-    title: string;
+    title!: string;
 
     @IsOptional()
     @IsString()
     description?: string;
 
     @IsISBN()
-    isbn: string;
+    isbn!: string;
 
     @IsOptional()
     @IsString()
@@ -18,7 +18,7 @@ export class CreateBookDto {
     issn?: string;
 
     @IsNumber()
-    publicationYear: number;
+    publicationYear!: number;
 
     @IsOptional()
     @IsNumber()
@@ -39,8 +39,8 @@ export class CreateBookDto {
     price?: number;
 
     @IsUUID()
-    authorId: string;
+    authorId!: string;
 
     @IsUUID()
-    publisherId: string
+    publisherId!: string
 }

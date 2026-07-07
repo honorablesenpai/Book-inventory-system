@@ -17,9 +17,14 @@ export class PublisherService {
     async findOne(id: string): Promise<Publisher> {
         const publisher = await this.publisherRepository.findOne({ where: { id } });
         if (!publisher) {
-            throw new NotFoundException('Publisher with ID ${id} not found');
+            throw new NotFoundException(`Publisher with ID ${id} not found`);
         }
         return publisher;
+
+    }
+
+    async findAll(): Promise<Publisher[]> {
+        return await this.publisherRepository.find();
     }
 
     async update(id: string, updatePublisherDto: UpdatePublisherDto): Promise<Publisher> {

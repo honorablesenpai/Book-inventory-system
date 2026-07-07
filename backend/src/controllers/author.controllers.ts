@@ -25,13 +25,13 @@ export class AuthorController {
     } 
 
     @Put(':id')
-    async update(@Param('id') id: string  @Body() updateAuthorDto: UpdateAuthorDto, ): Promise<Author> {
+    async update(@Param('id') id: string, @Body() updateAuthorDto: UpdateAuthorDto, ): Promise<Author> {
         return await this.authorService.update(id, updateAuthorDto);
     }
 
     @Delete(':id')
     @HttpCode(HttpStatus.NO_CONTENT)
-    async remove(@Param('id'), id: string): Promise<void> {
+    async remove(@Param('id') id: string): Promise<void> {
         return await this.authorService.remove(id);
     }
 }

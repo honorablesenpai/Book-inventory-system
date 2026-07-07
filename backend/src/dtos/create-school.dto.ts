@@ -3,7 +3,7 @@ import { IsString, IsOptional, IsEmail, IsNumber, MaxLength } from 'class-valida
 export class CreateSchoolDto {
     @IsString()
     @MaxLength(255)
-    name: string;
+    name!: string;
 
     @IsOptional()
     @IsString()

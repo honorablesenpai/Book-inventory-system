@@ -1,6 +1,6 @@
 import { IsString, IsOptional, IsNumber, IsUUID, MaxLength, IsISBN } from 'class-validator';
 
-export class UpdatePublisherDto {
+export class UpdateBookDto {
     @IsOptional()
     @IsString()
     @MaxLength(255)
@@ -19,7 +19,7 @@ export class UpdatePublisherDto {
     @MaxLength(20)
     issn?: string;
 
-    @IsOptional
+    @IsOptional()
     @IsNumber()
     publicationYear?: number;
 
@@ -41,7 +41,7 @@ export class UpdatePublisherDto {
     @IsNumber()
     price?: number;
 
-    @IsOptional
+    @IsOptional()
     @IsUUID()
     authorId?: string;
 

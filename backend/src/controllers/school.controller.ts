@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Param, Put, Delete, HttpCode, HttpStatus, 
 import { SchoolService } from '../services/school.service';
 import { CreateSchoolDto } from '../dtos/create-school.dto';
 import { UpdateSchoolDto } from '../dtos/update-school.dto';
-import { School } form '../entities/school.entity';
+import { School } from '../entities/school.entity';
 
 @Controller('schools')
 export class SchoolController {
@@ -10,7 +10,7 @@ export class SchoolController {
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
-    async create(@Body() createSchoolDto: createSchoolDto): Promise<School> {
+    async create(@Body() createSchoolDto: CreateSchoolDto): Promise<School> {
         return await this.schoolService.create(createSchoolDto);
     }
 
@@ -25,8 +25,8 @@ export class SchoolController {
     } 
 
     @Put(':id')
-    async update( @Param('id') id: string' @Body() updateSchoolDto: UpdateSchoolDto, ): Promise<School> {
-        return await this.bookService.update(id, updateBookDto);
+    async update( @Param('id') id: string, @Body() updateSchoolDto: UpdateSchoolDto, ): Promise<School> {
+        return await this.schoolService.update(id, updateSchoolDto);
     }
 
      @Delete(':id')
