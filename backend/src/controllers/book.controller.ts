@@ -10,14 +10,24 @@ export class BookController {
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
-    async create(@Body() createBookDto: CreateBookDto): Promise<Book> {
+    async create(@Body() createBookDto: CreateBookDto): Promise<Book[]> {
         return await this.bookService.create(createBookDto);
     }
 
     @Get()
     async findAll(): Promise<Book[]> {
         return await this.bookService.findAll();
-    } 
+    }
+
+    @Get('author/:authorId')
+    async findByAuthor(@Param('authorId') authorId: string): Promise<Book[]> {
+        return await this.bookService.findByAuthor(authorId);
+    }
+
+    @Get('publisher/:publisherId')
+    async findByPublisher(@Param('publisherId') publisherId: string): Promise<Book[]> {
+        return await this.bookService.findByPublisher(publisherId);
+    }
 
     @Get(':id')
     async findOne(@Param('id') id: string): Promise<Book> {
@@ -33,15 +43,5 @@ export class BookController {
     @HttpCode(HttpStatus.NO_CONTENT)
     async remove(@Param('id') id: string): Promise<void> {
         return await this.bookService.remove(id);
-    }
-
-    @Get('author/:authorId')
-    async findByAuthor(@Param('authorId') authorId: string): Promise<Book[]> {
-        return await this.bookService.findByAuthor(authorId);
-    }
-
-    @Get('publisher/:publisherId')
-    async findByPublisher(@Param('publisherId') publisherId: string): Promise<Book[]> {
-        return await this.bookService.findByPublisher(publisherId);
     }
 }

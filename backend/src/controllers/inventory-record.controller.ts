@@ -10,7 +10,7 @@ export class InventoryRecordController {
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
-    async create(@Body() createInventoryRecordDto: CreateInventoryRecordDto): Promise<InventoryRecord> {
+    async create(@Body() createInventoryRecordDto: CreateInventoryRecordDto): Promise<InventoryRecord[]> {
         return await this.inventoryRecordService.create(createInventoryRecordDto);
     }
 
