@@ -10,7 +10,7 @@ export class InventoryRecordController {
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
-    async create(@Body() createInventoryRecordDto: CreateInventoryRecordDto): Promise<InventoryRecord[]> {
+    async create(@Body() createInventoryRecordDto: CreateInventoryRecordDto): Promise<InventoryRecord> {
         return await this.inventoryRecordService.create(createInventoryRecordDto);
     }
 
@@ -41,7 +41,7 @@ export class InventoryRecordController {
     }
 
     @Get('school/:schoolId')
-    async findByPublisher(@Param('schoolId') schoolId: string): Promise<InventoryRecord[]> {
+    async findBySchool(@Param('schoolId') schoolId: string): Promise<InventoryRecord[]> {
         return await this.inventoryRecordService.findBySchool(schoolId);
     }
 }

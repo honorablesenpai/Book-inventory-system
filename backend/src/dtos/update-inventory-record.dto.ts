@@ -1,4 +1,5 @@
 import { IsUUID, IsNumber, IsOptional, IsString, IsDateString, MaxLength } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class UpdateInventoryRecordDto {
     @IsOptional()
@@ -10,20 +11,24 @@ export class UpdateInventoryRecordDto {
     schoolId?: string;
 
     @IsOptional()
+    @Type(() => Number)
     @IsNumber()
-    quantityAvailable?: string;
+    quantityAvailable?: number;
 
     @IsOptional()
+    @Type(() => Number)
     @IsNumber()
-    quantityBorrowed?: string;
+    quantityBorrowed?: number;
 
     @IsOptional()
+    @Type(() => Number)
     @IsNumber()
-    quantityDamaged?: string;
+    quantityDamaged?: number;
 
     @IsOptional()
+    @Type(() => Number)
     @IsNumber()
-    quantityLost?: string;
+    quantityLost?: number;
 
     @IsOptional()
     @IsString()
@@ -41,5 +46,5 @@ export class UpdateInventoryRecordDto {
 
     @IsOptional()
     @IsDateString()
-    lastCheckDate?: Date;
+    lastCheckDate?: string;
 }

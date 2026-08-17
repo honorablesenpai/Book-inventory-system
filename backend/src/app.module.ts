@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AuthorModule } from './modules/author.modules';
@@ -14,14 +14,13 @@ import { InventoryRecordModule } from './modules/inventory-record.module';
       isGlobal: true,
     }),
     
-    TypeOrmModule.forRoot({
-    type: 'postgres',
-    url: postgresql://postgress:[#Crazy 460000]@db.eupxbgwpbrnjipnwsuuv.supabase.co:5432/postgres,
-    autoLoadEntities: true,
-    synchronize: true,
-    ssl: { rejectUnauthorized: false },
-
-  }),
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService], useFactory: (cfg: ConfigService) => ({ type: 'postgres', url: cfg.get<string>('DATABASE_URL'), 
+        autoLoadEntities: true,
+        synchronize: false, //using migrations instead od auto-sync
+        ssl: cfg.get<boolean>('DB_SSL') === true || cfg.get('DB_SSL') === 'true' ?{ rejectUnauthorized: false} :false,
+      }), 
+    }),
     AuthorModule, BookModule, PublisherModule, SchoolModule, InventoryRecordModule,
 ],
 }) export class AppModule {}
